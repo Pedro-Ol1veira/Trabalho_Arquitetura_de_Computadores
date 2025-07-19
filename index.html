@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Projeto Arquitetura de Computadores</title>
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Configurações do Projeto</h2>
+      <form id="configForm">
+        <div class="form-group">
+          <label for="enderecoBase">Endereço Base do Segmento de Código:</label>
+          <input type="text" id="enderecoBase" name="enderecoBase" placeholder="Ex: 1A2B" required pattern="^[0-9a-fA-F]{4}$">
+          <div class="error-message" id="enderecoBaseError"></div>
+        </div>
+        <button type="submit">Calcular Endereços</button>
+      </form>
+
+      <div id="results">
+        <h3>Endereços Calculados:</h3>
+        <p><strong>Pilha:</strong> <span id="enderecoPilha">N/A</span></p>
+        <p><strong>Dados:</strong> <span id="enderecoDado">N/A</span></p>
+        <p>
+          <strong>Extra de Dados:</strong>
+          <span id="enderecoExtraDados">N/A</span>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
