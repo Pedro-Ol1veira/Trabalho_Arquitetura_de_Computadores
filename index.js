@@ -6,8 +6,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const enderecoDadoSpan = document.getElementById("enderecoDado");
   const enderecoExtraDadosSpan = document.getElementById("enderecoExtraDados");
   const enderecoCodigoSpan = document.getElementById("enderecoCodigo");
+  
+  function gerarHexAleatorioEntre(min, max) {
+  
+  const numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
+
+  
+  return numeroAleatorio;
+  }
+
+  const ValorMax = 4096;
+  const ValorMIn = 2048;
+  const Aleatorio = gerarHexAleatorioEntre(ValorMIn, ValorMax)
+
 
   const INCREMENTO = 4096;
+  
 
   configForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -30,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     let enderecoBaseDecimal = parseInt(enderecoBaseHex, 16);
-    let enderecoPilhaDecimal = enderecoBaseDecimal + INCREMENTO;
+    let enderecoPilhaDecimal = enderecoBaseDecimal + Aleatorio;
     let enderecoDadoDecimal = enderecoPilhaDecimal + INCREMENTO;
     let enderecoExtraDadosDecimal = enderecoDadoDecimal + INCREMENTO;
 
