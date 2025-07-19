@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const enderecoPilhaSpan = document.getElementById("enderecoPilha");
   const enderecoDadoSpan = document.getElementById("enderecoDado");
   const enderecoExtraDadosSpan = document.getElementById("enderecoExtraDados");
+  const enderecoCodigoSpan = document.getElementById("enderecoCodigo");
 
   const INCREMENTO = 4096;
 
@@ -22,9 +23,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+    if(enderecoBaseInput.value[0].toUpperCase() >= "D") {
+        enderecoBaseError.textContent = "Por favor, insira um endereço menor que D0000";
+        return;
+    }
+
 
     let enderecoBaseDecimal = parseInt(enderecoBaseHex, 16);
-
     let enderecoPilhaDecimal = enderecoBaseDecimal + INCREMENTO;
     let enderecoDadoDecimal = enderecoPilhaDecimal + INCREMENTO;
     let enderecoExtraDadosDecimal = enderecoDadoDecimal + INCREMENTO;
@@ -37,5 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
     enderecoPilhaSpan.textContent = formatarHex(enderecoPilhaDecimal);
     enderecoDadoSpan.textContent = formatarHex(enderecoDadoDecimal);
     enderecoExtraDadosSpan.textContent = formatarHex(enderecoExtraDadosDecimal);
+    enderecoCodigoSpan.textContent = formatarHex(enderecoBaseInput.value);
   });
 });
