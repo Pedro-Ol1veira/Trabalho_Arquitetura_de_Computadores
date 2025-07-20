@@ -55,3 +55,39 @@ button:hover {
   margin-top: -10px;
   margin-bottom: 10px;
 }
+
+/* Adicione isso ao seu arquivo styles.css */
+
+#gpfFlowSection {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+
+.gpf-flow-diagram {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.gpf-flow-diagram h4 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.gpf-flow-diagram pre {
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto; /* Para rolagem horizontal se o código for muito longo */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+}
+
+.gpf-flow-diagram p {
+    font-size: 0.9em;
+    color: #555;
+}

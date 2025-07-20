@@ -58,4 +58,41 @@ document.addEventListener("DOMContentLoaded", () => {
     enderecoExtraDadosSpan.textContent = formatarHex(enderecoExtraDadosDecimal);
     enderecoCodigoSpan.textContent = formatarHex(enderecoBaseInput.value);
   });
+  
+    const gpfSelect = document.getElementById('GpfSelect');
+    const flowPilhaDados = document.getElementById('flowPilhaDados');
+    const flowPilhaCodigo = document.getElementById('flowPilhaCodigo');
+    const flowCodigoPilha = document.getElementById('flowCodigoPilha'); 
+
+    
+    function hideAllGpfFlowDiagrams() {
+        if (flowPilhaDados) flowPilhaDados.style.display = 'none';
+        if (flowPilhaCodigo) flowPilhaCodigo.style.display = 'none';
+        if (flowCodigoPilha) flowCodigoPilha.style.display = 'none';
+    }
+
+    
+    if (gpfSelect) { 
+        gpfSelect.addEventListener('change', (event) => {
+            const selectedOption = event.target.value; 
+            hideAllGpfFlowDiagrams();
+
+            switch (selectedOption) {
+                case 'PilhaDados':
+                    if (flowPilhaDados) flowPilhaDados.style.display = 'block'; 
+                    break;
+                case 'PilhaCodigo':
+                    if (flowPilhaCodigo) flowPilhaCodigo.style.display = 'block';
+                    break;
+                case 'CodigoPilha':
+                    if (flowCodigoPilha) flowPilhaCodigo.style.display = 'block';
+                    break;
+                default:
+                    break;
+            }
+        });
+    }
+    
+    hideAllGpfFlowDiagrams();
 });
+
