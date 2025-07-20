@@ -56,8 +56,6 @@ button:hover {
   margin-bottom: 10px;
 }
 
-/* Adicione isso ao seu arquivo styles.css */
-
 #gpfFlowSection {
     margin-top: 30px;
     padding-top: 20px;
@@ -82,7 +80,7 @@ button:hover {
     background-color: #eee;
     padding: 10px;
     border-radius: 5px;
-    overflow-x: auto; /* Para rolagem horizontal se o código for muito longo */
+    overflow-x: auto;
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.9em;
 }
