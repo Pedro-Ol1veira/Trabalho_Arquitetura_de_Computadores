@@ -89,3 +89,73 @@ button:hover {
     font-size: 0.9em;
     color: #555;
 }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: #f0f2f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.select-wrapper {
+    position: relative;
+    width: 300px;
+    background-color: #ffffff;
+    border-radius: 8px; 
+    border: 1px solid #d1d5db;
+    transition: all 0.2s ease-in-out; 
+}
+
+.select-wrapper::after {
+    content: '▼'; 
+    font-size: 1rem;
+    color: #6b7280;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%); 
+    pointer-events: none; 
+    transition: color 0.2s ease-in-out;
+}
+
+.select-wrapper select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    width: 100%;
+    padding: 12px 40px 12px 15px; 
+    color: #111827;
+    background-color: transparent; 
+    border: none;
+    cursor: pointer; 
+}
+
+.select-wrapper select:focus {
+    outline: none;
+}
+
+.select-wrapper:hover {
+    border-color: #9ca3af;
+}
+
+.select-wrapper:has(select:focus) {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.select-wrapper:has(select:focus)::after {
+    color: #3b82f6;
+}
+
+
+.select-wrapper select option {
+    background: #ffffff;
+    color: #111827;
+}

@@ -29,10 +29,10 @@
           <strong>Extra de Dados:</strong>
           <span id="enderecoExtraDados">N/A</span>
         </p>
-        <div id="GpfTipos">
-            <label for="tituloGPf">Escolha o GPf:</label>
+        <h3>Tipo de GPF</h3>
+        <div id="GpfTipos" class = "select-wrapper">
             <select name="Gpf" id="GpfSelect">
-                <option value="">Por favor, escolha uma opção</option>
+                <option value="" disabled selected>Por favor, escolha uma opção</option>
                 <option value="PilhaDados">Pilha em Dados</option>
                 <option value="PilhaCodigo">Pilha em Código</option>
                 <option value="CodigoPilha">Código em Pilha</option> </select>
@@ -43,8 +43,11 @@
       <div id="gpfFlowSection">
           <div id="flowPilhaDados" class="gpf-flow-diagram" style="display: none;">
               <h4>Pilha em Dados (Fluxo de Cálculo)</h4>
-              <pre><code>
+               
+              <pre>
+                <code>
                   // Cálculos para o cenário "Pilha em Dados":
+                  funcion
                   // 1. Endereço Base do Segmento de Dados é usado como referência.
                   // 2. A Pilha é alocada a partir de um offset dentro do segmento de Dados.
                   //    Ex: Endereço_Pilha = Endereço_Dados + Offset_Aleatório.
@@ -56,6 +59,11 @@
                   // [ Segmento de Código ] [ Segmento de Dados (contendo Pilha) ] [ Segmento Extra ]
                   //                           ^Pilha cresce para cá
               </code></pre>
+              <div id = CalculosGpfPilhaDados>
+                <h3>valores para o ponteiro SP minimo e maximo</h3>
+                <p><strong>SPMin:</strong> <span id="SPMin"></span></p>
+                <p><strong>SPMax:</strong> <span id="SPMax"></span></p>
+              </div>
               <p>Este fluxo descreve como a pilha é mapeada e operada quando localizada dentro do segmento de dados.</p>
           </div>
 
@@ -75,6 +83,13 @@
                   // Nota: Este cenário é incomum e pode levar a falhas de proteção (GPf)
                   // em sistemas modernos devido a permissões de execução.
               </code></pre>
+
+              <div id = CalculosGpfPilhaCodigo>
+                <h3>valores para o ponteiro IP minimo e maximo</h3>
+                <p><strong>SPCMin:</strong> <span id="SPCMin"></span></p>
+                <p><strong>SPCMax:</strong> <span id="SPCMax"></span></p>
+              </div>
+
               <p>Este fluxo mostra o mapeamento e operação da pilha quando ela compartilha o espaço do segmento de código.</p>
           </div>
 
@@ -94,8 +109,14 @@
                   // Nota: Este cenário é uma **GRANDE VULNERABILIDADE DE SEGURANÇA**
                   // (como buffer overflows que injetam código) e é evitado. Resultaria em GPf.
               </code></pre>
+              <div id = CalculoGPFCodigoPilha>
+              <h3>valores para o ponteiro SP minimo e maximo</h3>
+                <p><strong>IPMin:</strong> <span id="IPMin"></span></p>
+                <p><strong>IPMax:</strong> <span id="IPMax"></span></p>
+              </div>
               <p>Este fluxo ilustra um cenário onde o código é executado diretamente da pilha, o que é uma prática extremamente insegura.</p>
           </div>
       </div>
+      
       </div> </body>
 </html>

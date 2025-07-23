@@ -10,21 +10,20 @@ document.addEventListener("DOMContentLoaded", () => {
   function gerarHexAleatorioEntre(min, max) {
   
   const numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
-
-  
   return numeroAleatorio;
   }
 
   const ValorMax = 4096;
   const ValorMIn = 2048;
-  const Aleatorio = gerarHexAleatorioEntre(ValorMIn, ValorMax)
-
-
   const INCREMENTO = 4096;
+
   
 
   configForm.addEventListener("submit", (event) => {
     event.preventDefault();
+
+    const Aleatorio1 = gerarHexAleatorioEntre(ValorMIn, ValorMax)
+    const Aleatorio2 = gerarHexAleatorioEntre(ValorMIn, ValorMax)
 
     const enderecoBaseHex = enderecoBaseInput.value.trim();
     enderecoBaseError.textContent = "";
@@ -44,8 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     let enderecoBaseDecimal = parseInt(enderecoBaseHex, 16);
-    let enderecoPilhaDecimal = enderecoBaseDecimal + Aleatorio;
-    let enderecoDadoDecimal = enderecoPilhaDecimal + INCREMENTO;
+    let enderecoPilhaDecimal = enderecoBaseDecimal + Aleatorio1;
+    let enderecoDadoDecimal = enderecoPilhaDecimal + Aleatorio2;
     let enderecoExtraDadosDecimal = enderecoDadoDecimal + INCREMENTO;
 
     const formatarHex = (decimal) => {
@@ -56,7 +55,35 @@ document.addEventListener("DOMContentLoaded", () => {
     enderecoPilhaSpan.textContent = formatarHex(enderecoPilhaDecimal);
     enderecoDadoSpan.textContent = formatarHex(enderecoDadoDecimal);
     enderecoExtraDadosSpan.textContent = formatarHex(enderecoExtraDadosDecimal);
-    enderecoCodigoSpan.textContent = formatarHex(enderecoBaseInput.value);
+    enderecoCodigoSpan.textContent = formatarHex(enderecoBaseInput);
+
+    // VALORES PARA O PONTEIRO SP EM GPF DE PILHA EM DADOS
+    let SPMin = 0;
+    let SPMax = ((enderecoDadoDecimal * 16) - 1) - (enderecoPilhaDecimal * 16);
+    const spanSPMin = document.getElementById("SPMin");
+    const spanSPMax = document.getElementById("SPMax");
+    
+    spanSPMax.textContent = formatarHex(SPMax);
+    spanSPMin.textContent = formatarHex(SPMin);
+
+    // VAlORES PARA O PONTEIRO SP EM GPF DE PILHA EM CODIGO
+    let SPCMin = 0;
+    let SPCMax = ((enderecoDadoDecimal * 16) - 1) - (enderecoPilhaDecimal * 16);
+    const spanSPCMin = document.getElementById("SPCMin");
+    const spanSPCMax = document.getElementById("SPCMax");
+
+    spanSPCMax.textContent = formatarHex(SPCMax);
+    spanSPCMin.textContent = formatarHex(SPCMin);
+
+    // VALORES PARA O PONTEIRO IP EM GPF DE CODIGO EM PILHA
+    let IPMin = 0;
+    let IPMax = ((enderecoPilhaDecimal * 16) - 1) - (enderecoBaseDecimal * 16);
+    const spanIPMin = document.getElementById("IPMin");
+    const spanIPMax = document.getElementById("IPMax");
+
+    spanIPMax.textContent = formatarHex(IPMax);
+    spanIPMin.textContent = formatarHex(IPMin);
+
   });
   
     const gpfSelect = document.getElementById('GpfSelect');
@@ -85,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (flowPilhaCodigo) flowPilhaCodigo.style.display = 'block';
                     break;
                 case 'CodigoPilha':
-                    if (flowCodigoPilha) flowPilhaCodigo.style.display = 'block';
+                    if (flowCodigoPilha) flowCodigoPilha.style.display = 'block';
                     break;
                 default:
                     break;
@@ -94,5 +121,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     hideAllGpfFlowDiagrams();
+
+    
+
+
+
+    
 });
 
