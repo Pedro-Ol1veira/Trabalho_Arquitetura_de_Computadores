@@ -68,53 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
     enderecoExtraDadosSpan.textContent = formatarHex(enderecoExtraDadosDecimal);
     enderecoCodigoSpan.textContent = formatarHex(enderecoBaseDecimal);
 
-    // VALORES PARA O PONTEIRO SP EM GPF DE PILHA EM DADOS
-    let SPMin = 0;
-    let SPMax = ((enderecoDadoDecimal * 16) - 1) - (enderecoPilhaDecimal * 16);
-    const spanSPMin = document.getElementById("SPMin");
-    const spanSPMax = document.getElementById("SPMax");
-    
-    spanSPMax.textContent = formatarHex(SPMax);
-    spanSPMin.textContent = formatarHex(SPMin);
-
-    const CalculoSPMax = document.getElementById("CalculoSPMax")
-    const CalculoSPMin = document.getElementById("CalculoSPMin")
-
-    CalculoSPMax.textContent = `EndereçoFisicoMax = SS * 10 + SPMax \nEndereçoFisicoMax = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMax \n${formatarHex((enderecoDadoDecimal * 16) - 1)} = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMax \nSPMax = ${formatarHex(enderecoPilhaDecimal)} * 10 - ${formatarHex((enderecoDadoDecimal * 16) - 1)} \nSPMax = ${formatarHex((enderecoPilhaDecimal * 16))} - ${formatarHex((enderecoDadoDecimal * 16) - 1)} \nSPMax = ${formatarHex(SPMax)}`;
-    CalculoSPMin.textContent = `EndereçoFisicoMin = SS * 10 + SPMin \nEndereçoFisicoMin = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMin \n${formatarHex((enderecoPilhaDecimal * 16) - 1)} = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMin \nSPMin = ${formatarHex(enderecoPilhaDecimal)} * 10 - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nSPMin = ${formatarHex((enderecoPilhaDecimal * 16))} - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nSPMin = ${formatarHex(SPMin)}`;
-
-    // VAlORES PARA O PONTEIRO SP EM GPF DE PILHA EM CODIGO
-    let SPCMin = 0;
-    let SPCMax = ((enderecoDadoDecimal * 16) - 1) - (enderecoPilhaDecimal * 16);
-    const spanSPCMin = document.getElementById("SPCMin");
-    const spanSPCMax = document.getElementById("SPCMax");
-
-    spanSPCMax.textContent = formatarHex(SPCMax);
-    spanSPCMin.textContent = formatarHex(SPCMin);
-
-    const CalculoSPCMax = document.getElementById("CalculoSPCMax")
-    const CalculoSPCMin = document.getElementById("CalculoSPCMin")
-
-    CalculoSPCMax.textContent = `EndereçoFisicoMax = SS * 10 + SPMax \nEndereçoFisicoMax = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMax \n${formatarHex((enderecoDadoDecimal * 16) - 1)} = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMax \nSPMax = ${formatarHex(enderecoPilhaDecimal)} * 10 - ${formatarHex((enderecoDadoDecimal * 16) - 1)} \nSPMax = ${formatarHex((enderecoPilhaDecimal * 16))} - ${formatarHex((enderecoDadoDecimal * 16) - 1)} \nSPMax = ${formatarHex(SPMax)}`;
-    CalculoSPCMin.textContent = `EndereçoFisicoMin = SS * 10 + SPMin \nEndereçoFisicoMin = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMin \n${formatarHex((enderecoPilhaDecimal * 16) - 1)} = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMin \nSPMin = ${formatarHex(enderecoPilhaDecimal)} * 10 - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nSPMin = ${formatarHex((enderecoPilhaDecimal * 16))} - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nSPMin = ${formatarHex(SPMin)}`;
-
-
-    // VALORES PARA O PONTEIRO IP EM GPF DE CODIGO EM PILHA
-    let IPMin = 0;
-    let IPMax = ((enderecoPilhaDecimal * 16) - 1) - (enderecoBaseDecimal * 16);
-    const spanIPMin = document.getElementById("IPMin");
-    const spanIPMax = document.getElementById("IPMax");
-
-    spanIPMax.textContent = formatarHex(IPMax);
-    spanIPMin.textContent = formatarHex(IPMin);
-
-    const CalculoIPMax = document.getElementById("CalculoIPMax");
-    const CalculoIPMin = document.getElementById("CalculoIPMin");
-
-    CalculoIPMax.textContent = `EndereçoFisicoMax = CS * 10 + IPMax \nEndereçoFisicoMax = ${formatarHex(enderecoBaseDecimal)} * 10 + IPMax \n${formatarHex((enderecoPilhaDecimal * 16) - 1)} = ${formatarHex(enderecoBaseDecimal)} * 10 + IPMax \nIPMax = ${formatarHex(enderecoBaseDecimal)} * 10 - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nIPMax = ${formatarHex((enderecoBaseDecimal * 16))} - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nIPmax = ${formatarHex(IPMax)}`;
-    CalculoIPMin.textContent = `EndereçoFisicoMin = CS * 10 + IPMin \nEndereçoFisicoMin = ${formatarHex(enderecoBaseDecimal)} * 10 + IPMin \n${formatarHex(enderecoBaseDecimal * 16)} = ${formatarHex(enderecoBaseDecimal)} * 10 + IPMin \nIPMin = ${formatarHex(enderecoBaseDecimal)} * 10 - ${formatarHex(enderecoBaseDecimal * 16)} \nIPMin = ${formatarHex((enderecoBaseDecimal * 16))} - ${formatarHex(enderecoBaseDecimal*16)} \nIPMin = ${formatarHex(IPMin)}`;
-
-    // inicializaçao do Option apos Escolher um endereço
     if (gpfSelect) { 
         gpfSelect.addEventListener('change', (event) => {
             const selectedOption = event.target.value; 
@@ -137,7 +90,68 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     hideAllGpfFlowDiagrams();
+
+    // VALORES PARA O PONTEIRO SP EM GPF DE PILHA EM DADOS
+    let SPMin = 0;
+    let SPMax = ((enderecoDadoDecimal * 16) - 1) - (enderecoPilhaDecimal * 16);
+    const spanSPMin = document.getElementById("SPMin");
+    const spanSPMax = document.getElementById("SPMax");
     
+    spanSPMax.textContent = formatarHex(SPMax);
+    spanSPMin.textContent = formatarHex(SPMin);
+
+    const CalculoSPMax = document.getElementById("CalculoSPMax")
+    const CalculoSPMin = document.getElementById("CalculoSPMin")
+
+    CalculoSPMax.textContent = `EndereçoFisicoMax = SS * 10 + SPMax \nEndereçoFisicoMax = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMax \n${formatarHex((enderecoDadoDecimal * 16) - 1)} = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMax \nSPMax = ${formatarHex(enderecoPilhaDecimal)} * 10 - ${formatarHex((enderecoDadoDecimal * 16) - 1)} \nSPMax = ${formatarHex((enderecoPilhaDecimal * 16))} - ${formatarHex((enderecoDadoDecimal * 16) - 1)} \nSPMax = ${formatarHex(SPMax)}`;
+    CalculoSPMin.textContent = `EndereçoFisicoMin = SS * 10 + SPMin \nEndereçoFisicoMin = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMin \n${formatarHex((enderecoPilhaDecimal * 16) - 1)} = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMin \nSPMin = ${formatarHex(enderecoPilhaDecimal)} * 10 - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nSPMin = ${formatarHex((enderecoPilhaDecimal * 16))} - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nSPMin = ${formatarHex(SPMin)}`;
+
+    const GPFPilhaDados = document.getElementById("OffsetPilhaD");
+    GPFPilhaDados.textContent = `Instrução POP com OFFSET SP = ${formatarHex(SPMin)}`
+
+
+
+    // VAlORES PARA O PONTEIRO SP EM GPF DE PILHA EM CODIGO
+    let SPCMin = 0;
+    let SPCMax = ((enderecoDadoDecimal * 16) - 1) - (enderecoPilhaDecimal * 16);
+    const spanSPCMin = document.getElementById("SPCMin");
+    const spanSPCMax = document.getElementById("SPCMax");
+
+    spanSPCMax.textContent = formatarHex(SPCMax);
+    spanSPCMin.textContent = formatarHex(SPCMin);
+
+    const CalculoSPCMax = document.getElementById("CalculoSPCMax")
+    const CalculoSPCMin = document.getElementById("CalculoSPCMin")
+
+    CalculoSPCMax.textContent = `EndereçoFisicoMax = SS * 10 + SPMax \nEndereçoFisicoMax = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMax \n${formatarHex((enderecoDadoDecimal * 16) - 1)} = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMax \nSPMax = ${formatarHex(enderecoPilhaDecimal)} * 10 - ${formatarHex((enderecoDadoDecimal * 16) - 1)} \nSPMax = ${formatarHex((enderecoPilhaDecimal * 16))} - ${formatarHex((enderecoDadoDecimal * 16) - 1)} \nSPMax = ${formatarHex(SPMax)}`;
+    CalculoSPCMin.textContent = `EndereçoFisicoMin = SS * 10 + SPMin \nEndereçoFisicoMin = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMin \n${formatarHex((enderecoPilhaDecimal * 16) - 1)} = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMin \nSPMin = ${formatarHex(enderecoPilhaDecimal)} * 10 - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nSPMin = ${formatarHex((enderecoPilhaDecimal * 16))} - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nSPMin = ${formatarHex(SPMin)}`;
+
+    const enderecoGPF = document.getElementById("ofssetGPF")
+
+    enderecoGPF.textContent = `OFFSET GPF SP = ${formatarHex(SPMax + 48)}`
+
+    // VALORES PARA O PONTEIRO IP EM GPF DE CODIGO EM PILHA
+    let IPMin = 0;
+    let IPMax = ((enderecoPilhaDecimal * 16) - 1) - (enderecoBaseDecimal * 16);
+    const spanIPMin = document.getElementById("IPMin");
+    const spanIPMax = document.getElementById("IPMax");
+
+    spanIPMax.textContent = formatarHex(IPMax);
+    spanIPMin.textContent = formatarHex(IPMin);
+
+    const CalculoIPMax = document.getElementById("CalculoIPMax");
+    const CalculoIPMin = document.getElementById("CalculoIPMin");
+
+    CalculoIPMax.textContent = `EndereçoFisicoMax = CS * 10 + IPMax \nEndereçoFisicoMax = ${formatarHex(enderecoBaseDecimal)} * 10 + IPMax \n${formatarHex((enderecoPilhaDecimal * 16) - 1)} = ${formatarHex(enderecoBaseDecimal)} * 10 + IPMax \nIPMax = ${formatarHex(enderecoBaseDecimal)} * 10 - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nIPMax = ${formatarHex((enderecoBaseDecimal * 16))} - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nIPmax = ${formatarHex(IPMax)}`;
+    CalculoIPMin.textContent = `EndereçoFisicoMin = CS * 10 + IPMin \nEndereçoFisicoMin = ${formatarHex(enderecoBaseDecimal)} * 10 + IPMin \n${formatarHex(enderecoBaseDecimal * 16)} = ${formatarHex(enderecoBaseDecimal)} * 10 + IPMin \nIPMin = ${formatarHex(enderecoBaseDecimal)} * 10 - ${formatarHex(enderecoBaseDecimal * 16)} \nIPMin = ${formatarHex((enderecoBaseDecimal * 16))} - ${formatarHex(enderecoBaseDecimal*16)} \nIPMin = ${formatarHex(IPMin)}`;
+
+    const enderecoGPF2  = document.getElementById("offsetGPF2");
+    enderecoGPF2.textContent = `OFFSET GPF IP = ${formatarHex(IPMax + 52)}`;
+    
+    
+    
+    
+
   });
        
 });
