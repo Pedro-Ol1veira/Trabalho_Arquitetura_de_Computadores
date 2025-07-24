@@ -29,10 +29,11 @@ gh repo clone Pedro-Ol1veira/Trabalho_Arquitetura_de_Computadores
 
 ### 📂 Estrutura do Projeto
 /
-├── index.html          # Interface principal
-├── styles.css          # Estilos CSS
-├── index.js            # Lógica JavaScript
-└── README.md           # Documentação
+├── 📄 index.html          # Interface principal
+├── 🎨 styles.css          # Estilos CSS
+├── ⚙️  index.js           # Lógica JavaScript
+└── 📚 README.md           # Documentação
+/
 
 ### 💻 Tecnologias Utilizadas
 <div style="display: flex; gap: 10px;"> <img src="https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white" alt="HTML5"> <img src="https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white" alt="CSS3"> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black" alt="JavaScript"> </div>
