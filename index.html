@@ -22,11 +22,11 @@
 
       <div id="results">
         <h3>Endereços Calculados:</h3>
-        <p><strong>Codigo:</strong> <span id="enderecoCodigo">N/A</span></p>
-        <p><strong>Pilha:</strong> <span id="enderecoPilha">N/A</span></p>
-        <p><strong>Dados:</strong> <span id="enderecoDado">N/A</span></p>
+        <p><strong>Codigo(CS):</strong> <span id="enderecoCodigo">N/A</span></p>
+        <p><strong>Pilha(SS):</strong> <span id="enderecoPilha">N/A</span></p>
+        <p><strong>Dados(DS):</strong> <span id="enderecoDado">N/A</span></p>
         <p>
-          <strong>Extra de Dados:</strong>
+          <strong>Extra de Dados(ES):</strong>
           <span id="enderecoExtraDados">N/A</span>
         </p>
         <h3>Tipo de GPF</h3>
@@ -38,82 +38,61 @@
                 <option value="CodigoPilha">Código em Pilha</option> </select>
         </div>
       </div>
-
-      <hr> <h2>Fluxo de Cálculos do GPf</h2>
+      <hr> <h2>Fluxo de Cálculos do GPF</h2>
       <div id="gpfFlowSection">
-          <div id="flowPilhaDados" class="gpf-flow-diagram" style="display: none;">
-              <h4>Pilha em Dados (Fluxo de Cálculo)</h4>
+        <div id="flowPilhaDados" class="gpf-flow-diagram" style="display: none;">
+          <!-- SESSAO GPF PILHA EM DADOS -->
+              <h3>Pilha em Dados (Fluxo de Cálculo)</h3>
                
               <pre>
-                <code>
-                  // Cálculos para o cenário "Pilha em Dados":
-                  funcion
-                  // 1. Endereço Base do Segmento de Dados é usado como referência.
-                  // 2. A Pilha é alocada a partir de um offset dentro do segmento de Dados.
-                  //    Ex: Endereço_Pilha = Endereço_Dados + Offset_Aleatório.
-                  // 3. O crescimento da Pilha ocorre em direção aos endereços menores (decrescente).
-                  //    Push: Decrementa SP, copia dado.
-                  //    Pop: Copia dado, incrementa SP.
-                  //
-                  // Visualização:
-                  // [ Segmento de Código ] [ Segmento de Dados (contendo Pilha) ] [ Segmento Extra ]
-                  //                           ^Pilha cresce para cá
-              </code></pre>
-              <div id = CalculosGpfPilhaDados>
-                <h3>valores para o ponteiro SP minimo e maximo</h3>
-                <p><strong>SPMin:</strong> <span id="SPMin"></span></p>
-                <p><strong>SPMax:</strong> <span id="SPMax"></span></p>
-              </div>
+                  <p id = "CalculoSPMax"></p>
+                  <p id = "CalculoSPMin"></p>
+                  <h3>Vizualização Da Memoria</h3>
+                  <code>
+
+//[ Segmento de Código ] [ Segmento de Pilha ] [ Segmento de Dados (contendo pilha) ] [ Segmento Extra ]
+//                                              ^Pilha cresce para cá
+                  </code>
+                  <h3>valores para o ponteiro SP minimo e maximo</h3>
+                  <p><strong>SPMin:</strong> <span id="SPMin"></span></p>
+                  <p><strong>SPMax:</strong> <span id="SPMax"></span></p>
+              </pre>
               <p>Este fluxo descreve como a pilha é mapeada e operada quando localizada dentro do segmento de dados.</p>
           </div>
-
+          <!-- SESSAO GPF PILHA EM CODIGO -->
           <div id="flowPilhaCodigo" class="gpf-flow-diagram" style="display: none;">
-              <h4>Pilha em Código (Fluxo de Cálculo)</h4>
-              <pre><code>
-                  // Cálculos para o cenário "Pilha em Código":
-                  // 1. Endereço Base do Segmento de Código é usado como referência.
-                  // 2. A Pilha é alocada a partir de um offset dentro do segmento de Código.
-                  //    Ex: Endereço_Pilha = Endereço_Código + Offset_Aleatório.
-                  // 3. Crescimento da Pilha decrescente.
-                  //
-                  // Visualização:
-                  // [ Segmento de Código (contendo Pilha) ] [ Segmento de Dados ] [ Segmento Extra ]
-                  //          ^Pilha cresce para cá
-                  //
-                  // Nota: Este cenário é incomum e pode levar a falhas de proteção (GPf)
-                  // em sistemas modernos devido a permissões de execução.
-              </code></pre>
+              <h3>Pilha em Código (Fluxo de Cálculo)</h3>
+              <pre>
+                <p id = "CalculoSPCMax"></p>
+                <p id = "CalculoSPCMin"></p>
+                <h3>Vizualização Da Memoria</h3>
+                  <code>
 
-              <div id = CalculosGpfPilhaCodigo>
+//[ Segmento de Código ] [ Segmento de Pilha ] [ Segmento de Dados (contendo pilha) ] [ Segmento Extra ]
+//                    ^Pilha cresce para cá
+                  </code>
                 <h3>valores para o ponteiro IP minimo e maximo</h3>
                 <p><strong>SPCMin:</strong> <span id="SPCMin"></span></p>
                 <p><strong>SPCMax:</strong> <span id="SPCMax"></span></p>
-              </div>
-
+              </pre>             
               <p>Este fluxo mostra o mapeamento e operação da pilha quando ela compartilha o espaço do segmento de código.</p>
           </div>
-
+          <!-- SESSAO GPF CODIGO EM PILHA -->
           <div id="flowCodigoPilha" class="gpf-flow-diagram" style="display: none;">
-              <h4>Código em Pilha (Fluxo de Cálculo)</h4>
-              <pre><code>
-                  // Cálculos para o cenário "Código em Pilha":
-                  // 1. Endereço Base do Segmento de Pilha é usado como referência.
-                  // 2. O Código executável (instruções) é carregado na Pilha.
-                  //    Ex: Endereço_Código_Executável = Endereço_Pilha + Offset.
-                  // 3. O Program Counter (PC) aponta para o endereço do código na pilha.
-                  //
-                  // Visualização:
-                  // [ Segmento de Código Original ] [ Segmento de Dados ] [ Segmento de Pilha (contendo Código) ]
-                  //                                                              ^PC aponta para cá
-                  //
-                  // Nota: Este cenário é uma **GRANDE VULNERABILIDADE DE SEGURANÇA**
-                  // (como buffer overflows que injetam código) e é evitado. Resultaria em GPf.
-              </code></pre>
-              <div id = CalculoGPFCodigoPilha>
-              <h3>valores para o ponteiro SP minimo e maximo</h3>
-                <p><strong>IPMin:</strong> <span id="IPMin"></span></p>
-                <p><strong>IPMax:</strong> <span id="IPMax"></span></p>
-              </div>
+              <h3>Código em Pilha (Fluxo de Cálculo)</h3>
+              <pre>
+                  <p id = "CalculoIPMax"></p>
+                  <p id= "CalculoIPMin" ></p>
+                  <h3>Vizualização Da Memoria</h3>
+                  <code>
+
+//[ Segmento de Código ] [ Segmento de Pilha ] [ Segmento de Dados (contendo pilha) ] [ Segmento Extra ]
+//                        ^Código cresce para cá
+                  </code>
+                <h3>valores para o ponteiro SP minimo e maximo</h3>
+                  <p><strong>IPMin:</strong> <span id="IPMin"></span></p>
+                  <p><strong>IPMax:</strong> <span id="IPMax"></span></p>                
+            </pre>
               <p>Este fluxo ilustra um cenário onde o código é executado diretamente da pilha, o que é uma prática extremamente insegura.</p>
           </div>
       </div>

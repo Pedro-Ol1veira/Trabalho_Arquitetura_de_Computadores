@@ -6,12 +6,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const enderecoDadoSpan = document.getElementById("enderecoDado");
   const enderecoExtraDadosSpan = document.getElementById("enderecoExtraDados");
   const enderecoCodigoSpan = document.getElementById("enderecoCodigo");
-  
+  const gpfSelect = document.getElementById('GpfSelect');
+  const flowPilhaDados = document.getElementById('flowPilhaDados');
+  const flowPilhaCodigo = document.getElementById('flowPilhaCodigo');
+  const flowCodigoPilha = document.getElementById('flowCodigoPilha');
+
+
   function gerarHexAleatorioEntre(min, max) {
-  
   const numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
   return numeroAleatorio;
   }
+
+   function hideAllGpfFlowDiagrams() {
+        if (flowPilhaDados) flowPilhaDados.style.display = 'none';
+        if (flowPilhaCodigo) flowPilhaCodigo.style.display = 'none';
+        if (flowCodigoPilha) flowCodigoPilha.style.display = 'none';
+    }
+
 
   const ValorMax = 4096;
   const ValorMIn = 2048;
@@ -55,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     enderecoPilhaSpan.textContent = formatarHex(enderecoPilhaDecimal);
     enderecoDadoSpan.textContent = formatarHex(enderecoDadoDecimal);
     enderecoExtraDadosSpan.textContent = formatarHex(enderecoExtraDadosDecimal);
-    enderecoCodigoSpan.textContent = formatarHex(enderecoBaseInput);
+    enderecoCodigoSpan.textContent = formatarHex(enderecoBaseDecimal);
 
     // VALORES PARA O PONTEIRO SP EM GPF DE PILHA EM DADOS
     let SPMin = 0;
@@ -66,6 +77,12 @@ document.addEventListener("DOMContentLoaded", () => {
     spanSPMax.textContent = formatarHex(SPMax);
     spanSPMin.textContent = formatarHex(SPMin);
 
+    const CalculoSPMax = document.getElementById("CalculoSPMax")
+    const CalculoSPMin = document.getElementById("CalculoSPMin")
+
+    CalculoSPMax.textContent = `EndereçoFisicoMax = SS * 10 + SPMax \nEndereçoFisicoMax = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMax \n${formatarHex((enderecoDadoDecimal * 16) - 1)} = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMax \nSPMax = ${formatarHex(enderecoPilhaDecimal)} * 10 - ${formatarHex((enderecoDadoDecimal * 16) - 1)} \nSPMax = ${formatarHex((enderecoPilhaDecimal * 16))} - ${formatarHex((enderecoDadoDecimal * 16) - 1)} \nSPMax = ${formatarHex(SPMax)}`;
+    CalculoSPMin.textContent = `EndereçoFisicoMin = SS * 10 + SPMin \nEndereçoFisicoMin = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMin \n${formatarHex((enderecoPilhaDecimal * 16) - 1)} = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMin \nSPMin = ${formatarHex(enderecoPilhaDecimal)} * 10 - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nSPMin = ${formatarHex((enderecoPilhaDecimal * 16))} - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nSPMin = ${formatarHex(SPMin)}`;
+
     // VAlORES PARA O PONTEIRO SP EM GPF DE PILHA EM CODIGO
     let SPCMin = 0;
     let SPCMax = ((enderecoDadoDecimal * 16) - 1) - (enderecoPilhaDecimal * 16);
@@ -74,6 +91,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     spanSPCMax.textContent = formatarHex(SPCMax);
     spanSPCMin.textContent = formatarHex(SPCMin);
+
+    const CalculoSPCMax = document.getElementById("CalculoSPCMax")
+    const CalculoSPCMin = document.getElementById("CalculoSPCMin")
+
+    CalculoSPCMax.textContent = `EndereçoFisicoMax = SS * 10 + SPMax \nEndereçoFisicoMax = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMax \n${formatarHex((enderecoDadoDecimal * 16) - 1)} = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMax \nSPMax = ${formatarHex(enderecoPilhaDecimal)} * 10 - ${formatarHex((enderecoDadoDecimal * 16) - 1)} \nSPMax = ${formatarHex((enderecoPilhaDecimal * 16))} - ${formatarHex((enderecoDadoDecimal * 16) - 1)} \nSPMax = ${formatarHex(SPMax)}`;
+    CalculoSPCMin.textContent = `EndereçoFisicoMin = SS * 10 + SPMin \nEndereçoFisicoMin = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMin \n${formatarHex((enderecoPilhaDecimal * 16) - 1)} = ${formatarHex(enderecoPilhaDecimal)} * 10 + SPMin \nSPMin = ${formatarHex(enderecoPilhaDecimal)} * 10 - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nSPMin = ${formatarHex((enderecoPilhaDecimal * 16))} - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nSPMin = ${formatarHex(SPMin)}`;
+
 
     // VALORES PARA O PONTEIRO IP EM GPF DE CODIGO EM PILHA
     let IPMin = 0;
@@ -84,21 +108,13 @@ document.addEventListener("DOMContentLoaded", () => {
     spanIPMax.textContent = formatarHex(IPMax);
     spanIPMin.textContent = formatarHex(IPMin);
 
-  });
-  
-    const gpfSelect = document.getElementById('GpfSelect');
-    const flowPilhaDados = document.getElementById('flowPilhaDados');
-    const flowPilhaCodigo = document.getElementById('flowPilhaCodigo');
-    const flowCodigoPilha = document.getElementById('flowCodigoPilha'); 
+    const CalculoIPMax = document.getElementById("CalculoIPMax");
+    const CalculoIPMin = document.getElementById("CalculoIPMin");
 
-    
-    function hideAllGpfFlowDiagrams() {
-        if (flowPilhaDados) flowPilhaDados.style.display = 'none';
-        if (flowPilhaCodigo) flowPilhaCodigo.style.display = 'none';
-        if (flowCodigoPilha) flowCodigoPilha.style.display = 'none';
-    }
+    CalculoIPMax.textContent = `EndereçoFisicoMax = CS * 10 + IPMax \nEndereçoFisicoMax = ${formatarHex(enderecoBaseDecimal)} * 10 + IPMax \n${formatarHex((enderecoPilhaDecimal * 16) - 1)} = ${formatarHex(enderecoBaseDecimal)} * 10 + IPMax \nIPMax = ${formatarHex(enderecoBaseDecimal)} * 10 - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nIPMax = ${formatarHex((enderecoBaseDecimal * 16))} - ${formatarHex((enderecoPilhaDecimal * 16) - 1)} \nIPmax = ${formatarHex(IPMax)}`;
+    CalculoIPMin.textContent = `EndereçoFisicoMin = CS * 10 + IPMin \nEndereçoFisicoMin = ${formatarHex(enderecoBaseDecimal)} * 10 + IPMin \n${formatarHex(enderecoBaseDecimal * 16)} = ${formatarHex(enderecoBaseDecimal)} * 10 + IPMin \nIPMin = ${formatarHex(enderecoBaseDecimal)} * 10 - ${formatarHex(enderecoBaseDecimal * 16)} \nIPMin = ${formatarHex((enderecoBaseDecimal * 16))} - ${formatarHex(enderecoBaseDecimal*16)} \nIPMin = ${formatarHex(IPMin)}`;
 
-    
+    // inicializaçao do Option apos Escolher um endereço
     if (gpfSelect) { 
         gpfSelect.addEventListener('change', (event) => {
             const selectedOption = event.target.value; 
@@ -119,13 +135,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-    
+
     hideAllGpfFlowDiagrams();
-
     
-
-
-
-    
+  });
+       
 });
 
